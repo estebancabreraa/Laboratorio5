@@ -9,5 +9,10 @@
  * @author David Soto y Esteban Cabrera
  */
 public class Tanque {
-    
+    //Atributos
+    protected String ide;
+    protected int cantidadRestante;
+    protected int capacidad;
+    protected int alto;
+    protected Valvula[] valvulas = new Valvula[10];
 }

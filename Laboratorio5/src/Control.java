@@ -9,5 +9,5 @@
  * @author David Soto y Esteban Cabrera
  */
 public class Control {
-    
+    private Tanque[] tanques = new Tanque[10];
 }
