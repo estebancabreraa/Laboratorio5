@@ -10,10 +10,11 @@
  */
 public class Valvula {
     
-    private String municipio;
+    private String idMunicipio;
+    private int poblacion;
+    private Historial historial [];
     
     public Valvula(){
-        
         
     }
 }
