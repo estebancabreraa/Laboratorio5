@@ -8,6 +8,14 @@
  *
  * @author David Soto y Esteban Cabrera
  */
+import java.util.ArrayList;
+
 public class TCilindrico extends Tanque{
+    private int radio;
+    private Valvula[] valvulas = new Valvula[10];
     
+    public TCilindrico(String id, int capacidad, int alto, int cantidadRestante,  int radio, String nMunicipios[]){
+        super(id, capacidad, cantidadRestante, alto);
+        
+    }
 }

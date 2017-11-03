@@ -21,10 +21,10 @@ public class Control {
      * 
      * @return 
      */
-    public Tanque crearTanque(){
-       Tanque nuevo = new Tanque();
-       return nuevo;
-    }
+    //public Tanque crearTanque(){
+       //Tanque nuevo = new Tanque();
+    //   return nuevo;
+    //}
     /**
      * 
      */
@@ -51,11 +51,11 @@ public class Control {
      * @param posicion
      * @return 
      */
-    public Tanque buscarTanque(int posicion){
+    //public Tanque buscarTanque(int posicion){
         
-        Tanque busqueda = new Tanque();
-        return busqueda;
-    }
+      //  Tanque busqueda = new Tanque();
+        //return busqueda;
+    //}
     /**
      * 
      * @return 

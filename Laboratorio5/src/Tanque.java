@@ -14,5 +14,12 @@ public class Tanque {
     protected int cantidadRestante;
     protected int capacidad;
     protected int alto;
-    protected Valvula[] valvulas = new Valvula[10];
+    //protected Valvula[] valvulas = new Valvula[10];
+    public Tanque(String ide, int capacidadRestante, int capacidad, int alto){
+        this.ide = ide;
+        this.cantidadRestante = cantidadRestante;
+        this.capacidad = capacidad;
+        this.alto = alto;
+        
+    }
 }

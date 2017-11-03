@@ -8,6 +8,6 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-public class TOrtogonal extends Tanque{
+//public class TOrtogonal extends Tanque{
     
-}
+//}

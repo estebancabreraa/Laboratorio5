@@ -8,6 +8,6 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-public class TCubico extends Tanque{
+//public class TCubico extends Tanque{
     
-}
+//}
