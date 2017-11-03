@@ -10,4 +10,10 @@
  */
 public class Valvula {
     
+    private String municipio;
+    
+    public Valvula(){
+        
+        
+    }
 }
