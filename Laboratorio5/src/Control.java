@@ -10,4 +10,5 @@
  */
 public class Control {
     private Tanque[] tanques = new Tanque[10];
+    //Hola
 }
