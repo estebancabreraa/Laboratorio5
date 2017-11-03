@@ -8,13 +8,29 @@
  *
  * @author David Soto y Esteban Cabrera
  */
+
+import java.util.ArrayList;
+import java.util.Random;
+
+
 public class Valvula {
     
     private String idMunicipio;
     private int poblacion;
-    private Historial historial [];
+    private ArrayList<Historial> historial;
     
     public Valvula(){
+        historial = new ArrayList<Historial>();
+        Random rn = new Random();
         
     }
+    
+    public String getIdMunicipio(){
+        return this.idMunicipio;
+    }
+    
+    public int getPoblacion(){
+        return this.poblacion;
+    }
+    
 }
