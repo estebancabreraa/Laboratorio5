@@ -6,7 +6,7 @@
 
 /**
  *
- * @author David
+ * @author David Soto y Esteban Cabrera
  */
 public class GUI_Tanques extends javax.swing.JFrame {
 
