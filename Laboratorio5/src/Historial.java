@@ -10,4 +10,12 @@
  */
 public class Historial {
     
+    private String fecha;
+    private boolean estado;
+    
+    public Historial(String fecha, boolean estado){
+        this.fecha = fecha;
+        this.estado = estado;
+    }
+    
 }

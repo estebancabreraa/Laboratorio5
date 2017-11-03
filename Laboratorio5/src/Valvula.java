@@ -22,7 +22,7 @@ public class Valvula {
     public Valvula(){
         historial = new ArrayList<Historial>();
         Random rn = new Random();
-        
+        this.poblacion = 500000 + (int)(rn.nextInt() * 1000000); 
     }
     
     public String getIdMunicipio(){
