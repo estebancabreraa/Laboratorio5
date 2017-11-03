@@ -8,6 +8,6 @@
  *
  * @author David
  */
-public class TCilindrico {
+public class TCilindrico extends Tanque{
     
 }

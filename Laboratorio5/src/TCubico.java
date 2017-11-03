@@ -8,6 +8,6 @@
  *
  * @author David
  */
-public class TCubico {
+public class TCubico extends Tanque{
     
 }

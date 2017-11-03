@@ -8,6 +8,6 @@
  *
  * @author David
  */
-public class TOrtogonal {
+public class TOrtogonal extends Tanque{
     
 }
