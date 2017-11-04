@@ -10,8 +10,9 @@
  */
 
 public class TCilindrico extends Tanque{
+    //Atributos
     private int radio;
-    
+    //Constructor
     public TCilindrico(String id, int alto, int radio, String[] nMunicipios){
         super.ide = id;
         super.alto = alto;
@@ -21,11 +22,12 @@ public class TCilindrico extends Tanque{
             super.valvulas[i] = new Valvula(municipio);
         }
     }
+    //Metodos
     /**
      * 
      */
     public void ingresarCapacidad(){
-        double capacidad = Math.PI*Math.pow(radio, 2)*super.alto;
+        double capacidad = Math.PI*Math.pow(radio, 2)*alto;
         int capacidadInt = Double.valueOf(capacidad).intValue();
         super.capacidad = capacidadInt;
         super.cantidadRestante = capacidadInt;

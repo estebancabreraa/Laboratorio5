@@ -39,8 +39,11 @@ public class Tanque {
         String municipio = prueba.getIdMunicipio();
         return municipio;
     }
-    public void abrirValvula(){
-        
+    public void abrirValvula(int posicion){
+        Valvula prueba = new Valvula();
+        prueba = valvulas[posicion];
+        int poblacion = prueba.getPoblacion();
+        cantidadRestante = cantidadRestante - poblacion;
     }
     public void cerrarValvula(){
         
