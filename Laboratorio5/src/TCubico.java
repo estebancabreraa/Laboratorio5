@@ -13,6 +13,12 @@ public class TCubico extends Tanque{
     //Atributos
         //No hay
     //Constructor
+    /**
+     * Constructor de TCubico
+     * @param id El IDE del tanque
+     * @param alto Altura del tanque
+     * @param nMunicipios Arreglo de municipio para las valvulas
+     */
     public TCubico(String id, int alto, String[] nMunicipios){
         super.ide = id;
         super.alto = alto;
@@ -23,8 +29,9 @@ public class TCubico extends Tanque{
     }
     //Metodos
     /**
-     * 
+     * Ingresa la capacidad de TCubico
      */
+    @Override
     public void ingresarCapacidad(){
         double capacidad = Math.pow(alto, 3);
         int capacidadInt = Double.valueOf(capacidad).intValue();

@@ -14,29 +14,32 @@ public class Control {
     private Tanque[] tanques = new Tanque[10];
     private int contadorIngreso = 0;
     //Constructor
+    /**
+     * Constructor de la clase Control
+     */
     public Control(){
-        
+       //Vacio 
     }
     //Metodos
     /**
-     * 
-     * @param ide
-     * @param profundidad
-     * @param ancho
-     * @param radio
-     * @param alto
-     * @param tipo
-     * @param mun1
-     * @param mun2
-     * @param mun3
-     * @param mun4
-     * @param mun5
-     * @param mun6
-     * @param mun7
-     * @param mun8
-     * @param mun9
-     * @param mun10
-     * @return 
+     * Metodo que sirve para crear un nuevo tanque
+     * @param ide IDE del tanque
+     * @param profundidad Profundidad del Tanque
+     * @param ancho Ancho del tanque
+     * @param radio Radio del tanque
+     * @param alto Altura del tanque
+     * @param tipo Tipo de tanque que se creara
+     * @param mun1 Municipio de Valvula 1
+     * @param mun2 Municipio de Valvula 2
+     * @param mun3 Municipio de Valvula 3
+     * @param mun4 Municipio de Valvula 4
+     * @param mun5 Municipio de Valvula 5
+     * @param mun6 Municipio de Valvula 6
+     * @param mun7 Municipio de Valvula 7
+     * @param mun8 Municipio de Valvula 8
+     * @param mun9 Municipio de Valvula 9
+     * @param mun10 Municipio de Valvula 10
+     * @return Un tanque nuevo que se creo
      */
     public Tanque crearTanque(String ide, int profundidad, int ancho, int radio, int alto,String tipo, String mun1,String mun2,String mun3,String mun4,String mun5,String mun6,String mun7,String mun8,String mun9,String mun10){
         String[] municipios = new String[10];
@@ -64,18 +67,23 @@ public class Control {
         return nuevo;
     }
     /**
-     * 
+     * Ingresa un tanque nuevo a la lista de tanques
      */
     public void ingresarTanque(Tanque nuevo){
         tanques[contadorIngreso] = nuevo;
         contadorIngreso = contadorIngreso + 1;
     }
+    /**
+     * Reingresa un tanque a la lista con datos actualizados
+     * @param posicion La posicion en que se encontraba el tanque sin actualizar
+     * @param nuevo El tanque actualizado
+     */
     public void reingresarTanque(int posicion, Tanque nuevo){
         tanques[posicion] = nuevo;
     }
     /**
-     * 
-     * @return 
+     * Regresa un mensaje con una alerta del nivel del agua del tanque
+     * @return El mensaje de alerta para avisar que el agua de el tanque que se esta utilizando casi se acaba 
      */
     public String Alerta(int porcentaje){
         String alerta = "";
@@ -87,15 +95,15 @@ public class Control {
         return alerta;
     }
     /**
-     * 
+     * Cierra las valvulas de un tanque
      */
     public void cerrarValvulas(){
         //Nada
     }
     /**
-     * 
-     * @param posicion
-     * @return 
+     * Busca un Tanque por su IDE en la lista de Tanques
+     * @param ide El IDE del tanque
+     * @return Un tanque dentro de la lista de Tanques
      */
     public Tanque buscarTanque(String ide){
         Tanque busqueda = new Tanque();
@@ -109,6 +117,11 @@ public class Control {
         }
         return busqueda;
     }
+    /**
+     * Busca la posicion en la que esta un tanque dentro de la lista por su IDE
+     * @param ide El IDE del tanque que se busca
+     * @return La posicion del tanque buscado
+     */
     public int buscarTanque1(String ide){
         int posicion = -1;
         for(int i = 0;i<contadorIngreso; i++){
@@ -121,6 +134,11 @@ public class Control {
         }
         return posicion;
     }
+    /**
+     * Revisa si ya existe un tanque con determinando IDE en la lista
+     * @param ide El IDE que se desea buscar en la lista
+     * @return Un numero 1 si el IDE ya existe y un numero 0 si el IDE aun no existe
+     */
     public int buscarTanque2(String ide){
         int prueba = 0;
         if(contadorIngreso == 0){
@@ -138,7 +156,7 @@ public class Control {
         }
     }
     /**
-     * 
+     * Calcula el numero de valvulas cilindricas que existen en total en los tanque en la lista
      * @return 
      */
     public int calcularCantidadValvulasCilindricas(){
@@ -152,7 +170,10 @@ public class Control {
         }
         return cantidad;
     }
-    
+    /**
+     * Calcula la cantidad de metros cubicos de agua que restan entre todos los tanques
+     * @return Cantidad de metros cubicos restantes
+     */
     public int calcularCantidadAguaTotal(){
         int cantidadTotal = 0;
         for(int i = 0;i<contadorIngreso; i++){
@@ -162,6 +183,10 @@ public class Control {
         }
         return cantidadTotal;
     }
+    /**
+     * Devuelve el contador que lleva el numero de Tanques inngresados
+     * @return Cantidad de tanques ingresados
+     */
     public int getCOntador(){
         return contadorIngreso;
     }

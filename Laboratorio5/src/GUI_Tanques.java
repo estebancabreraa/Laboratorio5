@@ -63,8 +63,6 @@ public class GUI_Tanques extends javax.swing.JFrame {
         utilizando = ctrl.buscarTanque(ide);
         String fecha = dia.getValue().toString()+"/"+mes.getValue().toString()+"/"+anio.getValue().toString();
         utilizando.abrirValvula(posicion,fecha);
-        int hola = utilizando.getCantidadRestante();
-        System.out.println(hola);
         ctrl.reingresarTanque(posicionamiento, utilizando);
         int porcentaje = utilizando.calcularPorcentajeAgua();
         String alarma = ctrl.Alerta(porcentaje);
@@ -74,6 +72,14 @@ public class GUI_Tanques extends javax.swing.JFrame {
         if(alarma.equals("ALERTA: Menos de 10% Agua, Valvulas cerradas ")){
             deshabilitar();
         }
+    }
+    public void cerrar(int posicion){
+        String ide = TanquesIngresados.getSelectedItem().toString();
+        posicionamiento = ctrl.buscarTanque1(ide);
+        utilizando = ctrl.buscarTanque(ide);
+        String fecha = dia.getValue().toString()+"/"+mes.getValue().toString()+"/"+anio.getValue().toString();
+        utilizando.cerrarValvula(posicion,fecha);
+        ctrl.reingresarTanque(posicionamiento, utilizando);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -463,6 +469,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
         });
 
         Cerrar1.setText("Cerrar");
+        Cerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar1ActionPerformed(evt);
+            }
+        });
 
         Abrir2.setText("Abrir");
         Abrir2.addActionListener(new java.awt.event.ActionListener() {
@@ -472,6 +483,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
         });
 
         Cerrar2.setText("Cerrar");
+        Cerrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar2ActionPerformed(evt);
+            }
+        });
 
         Abrir3.setText("Abrir");
         Abrir3.addActionListener(new java.awt.event.ActionListener() {
@@ -481,6 +497,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
         });
 
         Cerrar3.setText("Cerrar");
+        Cerrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar3ActionPerformed(evt);
+            }
+        });
 
         Abrir4.setText("Abrir");
         Abrir4.addActionListener(new java.awt.event.ActionListener() {
@@ -532,22 +553,56 @@ public class GUI_Tanques extends javax.swing.JFrame {
         });
 
         Cerrar4.setText("Cerrar");
+        Cerrar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar4ActionPerformed(evt);
+            }
+        });
 
         Cerrar5.setText("Cerrar");
+        Cerrar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar5ActionPerformed(evt);
+            }
+        });
 
         Cerrar6.setText("Cerrar");
+        Cerrar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar6ActionPerformed(evt);
+            }
+        });
 
         Cerrar7.setText("Cerrar");
+        Cerrar7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar7ActionPerformed(evt);
+            }
+        });
 
         Cerrar8.setText("Cerrar");
+        Cerrar8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar8ActionPerformed(evt);
+            }
+        });
 
         Cerrar9.setText("Cerrar");
+        Cerrar9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar9ActionPerformed(evt);
+            }
+        });
 
         Cerrar10.setText("Cerrar");
+        Cerrar10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cerrar10ActionPerformed(evt);
+            }
+        });
 
         Advertencia.setForeground(new java.awt.Color(255, 0, 0));
         Advertencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Advertencia.setText("ADVERTENCIA: Queda menos del 25% de agua del tanque ");
 
         RellenarTanque.setText("Rellenar Tanque");
         RellenarTanque.addActionListener(new java.awt.event.ActionListener() {
@@ -668,9 +723,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Utilizar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(56, 56, 56)
                         .addComponent(RellenarTanque)
-                        .addGap(28, 28, 28)
+                        .addGap(29, 29, 29)
                         .addComponent(Cambiar)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -752,11 +807,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
                         .addComponent(ShowMuni10)
                         .addComponent(Abrir10)))
                 .addGap(27, 27, 27)
-                .addComponent(Advertencia)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RellenarTanque)
-                    .addComponent(Cambiar))
+                .addComponent(Advertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cambiar)
+                    .addComponent(RellenarTanque))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1031,6 +1086,56 @@ public class GUI_Tanques extends javax.swing.JFrame {
         deshabilitar();
         Utilizar.setEnabled(true);
     }//GEN-LAST:event_CambiarActionPerformed
+
+    private void Cerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar1ActionPerformed
+        // TODO add your handling code here:
+        cerrar(0);
+    }//GEN-LAST:event_Cerrar1ActionPerformed
+
+    private void Cerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar2ActionPerformed
+        // TODO add your handling code here:
+        cerrar(1);
+    }//GEN-LAST:event_Cerrar2ActionPerformed
+
+    private void Cerrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar3ActionPerformed
+        // TODO add your handling code here:
+        cerrar(2);
+    }//GEN-LAST:event_Cerrar3ActionPerformed
+
+    private void Cerrar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar4ActionPerformed
+        // TODO add your handling code here:
+        cerrar(3);
+    }//GEN-LAST:event_Cerrar4ActionPerformed
+
+    private void Cerrar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar5ActionPerformed
+        // TODO add your handling code here:
+        cerrar(4);
+    }//GEN-LAST:event_Cerrar5ActionPerformed
+
+    private void Cerrar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar6ActionPerformed
+        // TODO add your handling code here:
+        cerrar(5);
+    }//GEN-LAST:event_Cerrar6ActionPerformed
+
+    private void Cerrar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar7ActionPerformed
+        // TODO add your handling code here:
+        cerrar(6);
+    }//GEN-LAST:event_Cerrar7ActionPerformed
+
+    private void Cerrar8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar8ActionPerformed
+        // TODO add your handling code here:
+        cerrar(7);
+    }//GEN-LAST:event_Cerrar8ActionPerformed
+
+    private void Cerrar9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar9ActionPerformed
+        // TODO add your handling code here:
+        cerrar(8);
+    }//GEN-LAST:event_Cerrar9ActionPerformed
+
+    private void Cerrar10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cerrar10ActionPerformed
+        // TODO add your handling code here:
+        cerrar(9);
+    }//GEN-LAST:event_Cerrar10ActionPerformed
 
     /**
      * @param args the command line arguments

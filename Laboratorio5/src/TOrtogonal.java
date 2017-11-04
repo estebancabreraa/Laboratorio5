@@ -14,6 +14,14 @@ public class TOrtogonal extends Tanque{
     private int largo;
     private int profundidad;
     //Constructor
+    /**
+     * Contructor de TOrtogonal
+     * @param id El IDE del tanque
+     * @param alto Altura del taque
+     * @param largo Ancho del tanque
+     * @param profundidad Profundidad del tanque
+     * @param nMunicipios Arreglo de municipios para las valvulas
+     */
     public TOrtogonal(String id, int alto, int largo, int profundidad, String[] nMunicipios){
         super.ide = id;
         super.alto = alto;
@@ -26,8 +34,9 @@ public class TOrtogonal extends Tanque{
     }
     //Metodos
     /**
-     * 
+     * Ingresa la capacidad de un tanque Ortogonal
      */
+    @Override
     public void ingresarCapacidad(){
         double capacidad = alto*largo*profundidad;
         int capacidadInt = Double.valueOf(capacidad).intValue();
