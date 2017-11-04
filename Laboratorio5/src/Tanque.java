@@ -24,6 +24,9 @@ public class Tanque {
         int porcentaje = (cantidadRestante/capacidad)*100;
         return porcentaje;
     }
+    public String getIDE(){
+        return ide;
+    }
     public int getCapacidad(){
         return capacidad;
     }
