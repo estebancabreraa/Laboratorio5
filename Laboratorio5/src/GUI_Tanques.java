@@ -26,6 +26,10 @@ public class GUI_Tanques extends javax.swing.JFrame {
         utilizando = new Tanque();
         RellenarTanque.setEnabled(false);
         Utilizar.setEnabled(false);
+        MostrarTanques.setEnabled(false);
+        CalcularCantidadCilindricas.setEnabled(false);
+        AguaRegion.setEnabled(false);
+        
     }
     public void deshabilitar(){
         Abrir1.setEnabled(false);
@@ -775,7 +779,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
             }
         });
 
-        AguaRegion.setText("Metrios Cubicos de agua por Region");
+        AguaRegion.setText("Metros Cubicos de agua por Region");
         AguaRegion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AguaRegionActionPerformed(evt);
@@ -802,14 +806,16 @@ public class GUI_Tanques extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 41, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(CalcularCantidadCilindricas)
-                            .addGap(39, 39, 39))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(AguaRegion)
-                            .addGap(56, 56, 56)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(CalcularCantidadCilindricas)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(AguaRegion)
+                        .addGap(56, 56, 56))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -901,6 +907,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
                 Municipio10.setText("");
                 IDTanque.setText("");
                 Utilizar.setEnabled(true);
+                MostrarTanques.setEnabled(true);
+                CalcularCantidadCilindricas.setEnabled(true);
+                AguaRegion.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Ingreso realizado con exito", "Ingreso", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "Ya no es posible ingresar Tanques", "Error", JOptionPane.ERROR_MESSAGE);  
@@ -932,10 +941,16 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
     private void CalcularCantidadCilindricasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularCantidadCilindricasActionPerformed
         // TODO add your handling code here:
+        jTextArea1.setText("");
+        int cantidad = ctrl.calcularCantidadValvulasCilindricas();
+        jTextArea1.setText("La cantidad total de valvulas cilindricas es: "+cantidad);
     }//GEN-LAST:event_CalcularCantidadCilindricasActionPerformed
 
     private void AguaRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AguaRegionActionPerformed
         // TODO add your handling code here:
+        jTextArea1.setText("");
+        int cantidad = ctrl.calcularCantidadAguaTotal();
+        jTextArea1.setText("La cantidad de metros cubicos restantes es: "+cantidad);
     }//GEN-LAST:event_AguaRegionActionPerformed
 
     private void TanquesIngresadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanquesIngresadosActionPerformed

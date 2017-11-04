@@ -147,24 +147,25 @@ public class Control {
             Tanque prueba = new Tanque();
             prueba = tanques[i];
             if(prueba instanceof TCilindrico){
-                cantidad = cantidad + 1;
+                cantidad = cantidad + 10;
             }
-            return cantidad;
         }
         return cantidad;
     }
     
-    public int calcularCantidadAguaTotal(String ide){
+    public int calcularCantidadAguaTotal(){
         int cantidadTotal = 0;
-        for(int i = 0;i<tanques.length; i++){
+        for(int i = 0;i<contadorIngreso; i++){
             Tanque prueba = new Tanque();
             prueba = tanques[i];
             cantidadTotal = prueba.getCantidadRestante() + cantidadTotal;
-            return cantidadTotal;
         }
         return cantidadTotal;
     }
     public int getCOntador(){
         return contadorIngreso;
+    }
+    public void mostrarTanques(){
+        //Solo este falta
     }
 }
