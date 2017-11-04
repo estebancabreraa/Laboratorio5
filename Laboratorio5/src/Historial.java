@@ -11,9 +11,9 @@
 public class Historial {
     
     private String fecha;
-    private boolean estado;
+    private String estado;
     
-    public Historial(String fecha, boolean estado){
+    public Historial(String fecha, String estado){
         this.fecha = fecha;
         this.estado = estado;
     }

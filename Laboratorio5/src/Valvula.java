@@ -36,5 +36,8 @@ public class Valvula {
     public int getPoblacion(){
         return this.poblacion;
     }
+    public void ingresarNuevaFecha(Historial fecha){
+        historial.add(fecha);
+    }
     
 }
