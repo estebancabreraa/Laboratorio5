@@ -24,7 +24,9 @@ public class Tanque {
         
     }
     public int calcularPorcentajeAgua(){
-        int porcentaje = (cantidadRestante/capacidad)*100;
+        double porcentajito = ((cantidadRestante*1.0)/capacidad)*100;
+        int porcentaje = (int)Math.floor(porcentajito);
+        System.out.println(porcentaje);
         return porcentaje;
     }
     public String getIDE(){
@@ -45,11 +47,16 @@ public class Tanque {
         String municipio = prueba.getIdMunicipio();
         return municipio;
     }
-    public void abrirValvula(int posicion){
+    public void abrirValvula(int posicion, String fecha){
         Valvula prueba = new Valvula();
         prueba = valvulas[posicion];
         int poblacion = prueba.getPoblacion();
+        System.out.println(poblacion);
+        Historial nuevo = new Historial(fecha, "Abrir");
+        prueba.ingresarNuevaFecha(nuevo);
+        valvulas[posicion]=prueba;
         cantidadRestante = cantidadRestante - poblacion;
+        
     }
     public void cerrarValvula(){
         

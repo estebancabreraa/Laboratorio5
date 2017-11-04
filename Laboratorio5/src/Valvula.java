@@ -25,8 +25,7 @@ public class Valvula {
     public Valvula(String municipio){
         idMunicipio = municipio;
         historial = new ArrayList<Historial>();
-        Random rn = new Random();
-        this.poblacion = 500 + (int)(rn.nextInt() * 1000); 
+        this.poblacion = 500 + (int)(Math.random() * 1000); 
     }
     //Metodos
     public String getIdMunicipio(){

@@ -14,14 +14,18 @@ import javax.swing.JOptionPane;
 public class GUI_Tanques extends javax.swing.JFrame {
     //Atributos
     private Control ctrl; 
+    private Tanque utilizando;
+    private int posicionamiento;
     /**
      * Creates new form GUI_Tanques
      */
     public GUI_Tanques() {
         initComponents();
         ctrl = new Control();
-        Advertencia25.show(false);
-        Advertencia10.show(false);
+        posicionamiento = 0;
+        utilizando = new Tanque();
+        RellenarTanque.setEnabled(false);
+        Utilizar.setEnabled(false);
     }
     public void deshabilitar(){
         Abrir1.setEnabled(false);
@@ -49,7 +53,24 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Abrir10.setEnabled(true);
         Utilizar.setEnabled(true);
     }
-
+    public void abrir(int posicion){
+        String ide = TanquesIngresados.getSelectedItem().toString();
+        posicionamiento = ctrl.buscarTanque1(ide);
+        utilizando = ctrl.buscarTanque(ide);
+        String fecha = dia.getValue().toString()+"/"+mes.getValue().toString()+"/"+anio.getValue().toString();
+        utilizando.abrirValvula(posicion,fecha);
+        int hola = utilizando.getCantidadRestante();
+        System.out.println(hola);
+        ctrl.reingresarTanque(posicionamiento, utilizando);
+        int porcentaje = utilizando.calcularPorcentajeAgua();
+        String alarma = ctrl.Alerta(porcentaje);
+        Advertencia.setText(alarma);
+        Advertencia.setEnabled(true);
+        RellenarTanque.setEnabled(true);
+        if(alarma.equals("ALERTA: Menos de 10% Agua, Valvulas cerradas ")){
+            deshabilitar();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +138,6 @@ public class GUI_Tanques extends javax.swing.JFrame {
         ShowMuni8 = new javax.swing.JLabel();
         ShowMuni9 = new javax.swing.JLabel();
         ShowMuni10 = new javax.swing.JLabel();
-        MostrarMunicipios = new javax.swing.JButton();
         Abrir1 = new javax.swing.JButton();
         Cerrar1 = new javax.swing.JButton();
         Abrir2 = new javax.swing.JButton();
@@ -138,10 +158,10 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Cerrar8 = new javax.swing.JButton();
         Cerrar9 = new javax.swing.JButton();
         Cerrar10 = new javax.swing.JButton();
-        Advertencia25 = new javax.swing.JLabel();
-        Advertencia10 = new javax.swing.JLabel();
+        Advertencia = new javax.swing.JLabel();
         RellenarTanque = new javax.swing.JButton();
         Utilizar = new javax.swing.JButton();
+        Cambiar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MostrarTanques = new javax.swing.JButton();
@@ -216,13 +236,13 @@ public class GUI_Tanques extends javax.swing.JFrame {
             }
         });
 
-        Largo.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+        Largo.setModel(new javax.swing.SpinnerNumberModel(10, 10, 500, 25));
 
-        Profundidad.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+        Profundidad.setModel(new javax.swing.SpinnerNumberModel(10, 10, 500, 25));
 
-        Ancho.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+        Ancho.setModel(new javax.swing.SpinnerNumberModel(10, 10, 500, 25));
 
-        Radio.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+        Radio.setModel(new javax.swing.SpinnerNumberModel(10, 10, 500, 25));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -431,13 +451,6 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
         ShowMuni10.setText("Municipio 10:");
 
-        MostrarMunicipios.setText("Mostrar Municipios de las Valvulas del Tanque ");
-        MostrarMunicipios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarMunicipiosActionPerformed(evt);
-            }
-        });
-
         Abrir1.setText("Abrir");
         Abrir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -448,26 +461,71 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Cerrar1.setText("Cerrar");
 
         Abrir2.setText("Abrir");
+        Abrir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir2ActionPerformed(evt);
+            }
+        });
 
         Cerrar2.setText("Cerrar");
 
         Abrir3.setText("Abrir");
+        Abrir3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir3ActionPerformed(evt);
+            }
+        });
 
         Cerrar3.setText("Cerrar");
 
         Abrir4.setText("Abrir");
+        Abrir4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir4ActionPerformed(evt);
+            }
+        });
 
         Abrir5.setText("Abrir");
+        Abrir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir5ActionPerformed(evt);
+            }
+        });
 
         Abrir6.setText("Abrir");
+        Abrir6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir6ActionPerformed(evt);
+            }
+        });
 
         Abrir7.setText("Abrir");
+        Abrir7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir7ActionPerformed(evt);
+            }
+        });
 
         Abrir8.setText("Abrir");
+        Abrir8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir8ActionPerformed(evt);
+            }
+        });
 
         Abrir9.setText("Abrir");
+        Abrir9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir9ActionPerformed(evt);
+            }
+        });
 
         Abrir10.setText("Abrir");
+        Abrir10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Abrir10ActionPerformed(evt);
+            }
+        });
 
         Cerrar4.setText("Cerrar");
 
@@ -483,11 +541,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
         Cerrar10.setText("Cerrar");
 
-        Advertencia25.setForeground(new java.awt.Color(255, 0, 0));
-        Advertencia25.setText("ADVERTENCIA: Queda menos del 25% de agua del tanque ");
-
-        Advertencia10.setForeground(new java.awt.Color(255, 0, 0));
-        Advertencia10.setText("Se cerraron todas las valvulas (10% agua restante) ");
+        Advertencia.setForeground(new java.awt.Color(255, 0, 0));
+        Advertencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Advertencia.setText("ADVERTENCIA: Queda menos del 25% de agua del tanque ");
 
         RellenarTanque.setText("Rellenar Tanque");
         RellenarTanque.addActionListener(new java.awt.event.ActionListener() {
@@ -497,116 +553,122 @@ public class GUI_Tanques extends javax.swing.JFrame {
         });
 
         Utilizar.setText("Utilizar");
+        Utilizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UtilizarActionPerformed(evt);
+            }
+        });
+
+        Cambiar.setText("Cambiar Tanque");
+        Cambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CambiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo2)
+                .addGap(123, 123, 123))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(RellenarTanque)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(Advertencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Advertencia25)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar2))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar3))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar5))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar6))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar7))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni8, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Abrir8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Cerrar8))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ShowMuni9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ShowMuni9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ShowMuni10, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(Abrir10)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(Cerrar10))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(Abrir9)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(Cerrar9))))
+                                        .addComponent(Abrir10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar10))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(ShowMuni1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Abrir9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar9))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel22)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel25)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ShowMuni8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ShowMuni1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(Abrir1)
                                         .addGap(18, 18, 18)
                                         .addComponent(Cerrar1))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel22)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel25)
-                                                .addGap(6, 6, 6)
-                                                .addComponent(anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addComponent(MostrarMunicipios, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(Advertencia10))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar2))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar3))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar4))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar5))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar6))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir7)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar7))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Abrir8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cerrar8))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TanquesIngresados, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Utilizar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Titulo2)
-                .addGap(123, 123, 123))
+                        .addGap(18, 18, 18)
+                        .addComponent(Utilizar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(RellenarTanque)
+                        .addGap(28, 28, 28)
+                        .addComponent(Cambiar)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -628,9 +690,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
                     .addComponent(jLabel23)
                     .addComponent(jLabel24)
                     .addComponent(jLabel25))
-                .addGap(12, 12, 12)
-                .addComponent(MostrarMunicipios)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ShowMuni1)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -688,11 +748,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
                         .addComponent(ShowMuni10)
                         .addComponent(Abrir10)))
                 .addGap(27, 27, 27)
-                .addComponent(Advertencia25)
+                .addComponent(Advertencia)
                 .addGap(18, 18, 18)
-                .addComponent(Advertencia10)
-                .addGap(18, 18, 18)
-                .addComponent(RellenarTanque)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RellenarTanque)
+                    .addComponent(Cambiar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -840,6 +900,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
                 Municipio9.setText("");
                 Municipio10.setText("");
                 IDTanque.setText("");
+                Utilizar.setEnabled(true);
                 JOptionPane.showMessageDialog(null, "Ingreso realizado con exito", "Ingreso", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(null, "Ya no es posible ingresar Tanques", "Error", JOptionPane.ERROR_MESSAGE);  
@@ -850,16 +911,19 @@ public class GUI_Tanques extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_IngresarTanqueActionPerformed
 
-    private void MostrarMunicipiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarMunicipiosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MostrarMunicipiosActionPerformed
-
     private void Abrir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir1ActionPerformed
         // TODO add your handling code here:
+        abrir(0);
+        
     }//GEN-LAST:event_Abrir1ActionPerformed
 
     private void RellenarTanqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenarTanqueActionPerformed
         // TODO add your handling code here:
+        utilizando.rellenarTanque();
+        ctrl.reingresarTanque(posicionamiento, utilizando);
+        Advertencia.setText("");
+        RellenarTanque.setEnabled(false);
+        habilitar();
     }//GEN-LAST:event_RellenarTanqueActionPerformed
 
     private void MostrarTanquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarTanquesActionPerformed
@@ -877,6 +941,81 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private void TanquesIngresadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanquesIngresadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TanquesIngresadosActionPerformed
+
+    private void UtilizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UtilizarActionPerformed
+        // TODO add your handling code here:
+        String ide = TanquesIngresados.getSelectedItem().toString();
+        int posicion = ctrl.buscarTanque1(ide);
+        Tanque busqueda = ctrl.buscarTanque(ide);
+        ShowMuni1.setText("Municipio :"+busqueda.getMunicipioDeValvula(0)); 
+        ShowMuni2.setText("Municipio :"+busqueda.getMunicipioDeValvula(1));
+        ShowMuni3.setText("Municipio :"+busqueda.getMunicipioDeValvula(2)); 
+        ShowMuni4.setText("Municipio :"+busqueda.getMunicipioDeValvula(3)); 
+        ShowMuni5.setText("Municipio :"+busqueda.getMunicipioDeValvula(4)); 
+        ShowMuni6.setText("Municipio :"+busqueda.getMunicipioDeValvula(5)); 
+        ShowMuni7.setText("Municipio :"+busqueda.getMunicipioDeValvula(6)); 
+        ShowMuni8.setText("Municipio :"+busqueda.getMunicipioDeValvula(7)); 
+        ShowMuni9.setText("Municipio :"+busqueda.getMunicipioDeValvula(8)); 
+        ShowMuni10.setText("Municipio :"+busqueda.getMunicipioDeValvula(9));
+        utilizando = busqueda;
+        posicionamiento = posicion;
+        TanquesIngresados.setEnabled(false);
+        Utilizar.setEnabled(false);
+        habilitar();
+    }//GEN-LAST:event_UtilizarActionPerformed
+
+    private void Abrir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir2ActionPerformed
+        // TODO add your handling code here:
+        abrir(1);
+    }//GEN-LAST:event_Abrir2ActionPerformed
+
+    private void Abrir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir3ActionPerformed
+        // TODO add your handling code here:
+        abrir(2);
+    }//GEN-LAST:event_Abrir3ActionPerformed
+
+    private void Abrir4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir4ActionPerformed
+        // TODO add your handling code here:
+        abrir(3);
+    }//GEN-LAST:event_Abrir4ActionPerformed
+
+    private void Abrir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir5ActionPerformed
+        // TODO add your handling code here:
+        abrir(4);
+    }//GEN-LAST:event_Abrir5ActionPerformed
+
+    private void Abrir6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir6ActionPerformed
+        // TODO add your handling code here:
+        abrir(5);
+    }//GEN-LAST:event_Abrir6ActionPerformed
+
+    private void Abrir7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir7ActionPerformed
+        // TODO add your handling code here:
+        abrir(6);
+    }//GEN-LAST:event_Abrir7ActionPerformed
+
+    private void Abrir8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir8ActionPerformed
+        // TODO add your handling code here:
+        abrir(7);
+    }//GEN-LAST:event_Abrir8ActionPerformed
+
+    private void Abrir9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir9ActionPerformed
+        // TODO add your handling code here:
+        abrir(8);
+    }//GEN-LAST:event_Abrir9ActionPerformed
+
+    private void Abrir10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Abrir10ActionPerformed
+        // TODO add your handling code here:
+        abrir(9);
+    }//GEN-LAST:event_Abrir10ActionPerformed
+
+    private void CambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambiarActionPerformed
+        // TODO add your handling code here:
+        Utilizar.setEnabled(true);
+        TanquesIngresados.setEnabled(true);
+        deshabilitar();
+        Utilizar.setEnabled(true);
+    }//GEN-LAST:event_CambiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -924,11 +1063,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JButton Abrir7;
     private javax.swing.JButton Abrir8;
     private javax.swing.JButton Abrir9;
-    private javax.swing.JLabel Advertencia10;
-    private javax.swing.JLabel Advertencia25;
+    private javax.swing.JLabel Advertencia;
     private javax.swing.JButton AguaRegion;
     private javax.swing.JSpinner Ancho;
     private javax.swing.JButton CalcularCantidadCilindricas;
+    private javax.swing.JButton Cambiar;
     private javax.swing.JButton Cerrar1;
     private javax.swing.JButton Cerrar10;
     private javax.swing.JButton Cerrar2;
@@ -944,7 +1083,6 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JTextField IDTanque;
     private javax.swing.JButton IngresarTanque;
     private javax.swing.JSpinner Largo;
-    private javax.swing.JButton MostrarMunicipios;
     private javax.swing.JButton MostrarTanques;
     private javax.swing.JTextField Municipio1;
     private javax.swing.JTextField Municipio10;

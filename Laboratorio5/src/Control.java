@@ -70,6 +70,9 @@ public class Control {
         tanques[contadorIngreso] = nuevo;
         contadorIngreso = contadorIngreso + 1;
     }
+    public void reingresarTanque(int posicion, Tanque nuevo){
+        tanques[posicion] = nuevo;
+    }
     /**
      * 
      * @return 
@@ -77,9 +80,9 @@ public class Control {
     public String Alerta(int porcentaje){
         String alerta = "";
         if(porcentaje<=25 && porcentaje>=10){
-            alerta = "ALERTA: Al Tanque le queda menos del 25% de agua restante";
+            alerta = "ALERTA: Menos de 25% de Agua";
         }if(porcentaje<10){
-            alerta = "ALERTA: Las valvulas han sido cerradas debido a que queda menos del 10% de agua restante";
+            alerta = "ALERTA: Menos de 10% Agua, Valvulas cerradas ";
         }
         return alerta;
     }
@@ -105,6 +108,18 @@ public class Control {
             }
         }
         return busqueda;
+    }
+    public int buscarTanque1(String ide){
+        int posicion = -1;
+        for(int i = 0;i<contadorIngreso; i++){
+            Tanque prueba1 = new Tanque();
+            prueba1 = tanques[i];
+            if(ide.equals(prueba1.getIDE())){
+                posicion = posicion + 1;
+                return posicion;
+            }
+        }
+        return posicion;
     }
     public int buscarTanque2(String ide){
         int prueba = 0;
