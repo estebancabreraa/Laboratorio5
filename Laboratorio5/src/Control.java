@@ -12,7 +12,7 @@
 public class Control {
     //Atributos
     private Tanque[] tanques = new Tanque[10];
-    
+    private int contadorIngreso = 0;
     //Constructor
     public Control(){
         
@@ -67,7 +67,8 @@ public class Control {
      * 
      */
     public void ingresarTanque(Tanque nuevo){
-        tanques[tanques.length] = nuevo;
+        tanques[contadorIngreso] = nuevo;
+        contadorIngreso = contadorIngreso + 1;
     }
     /**
      * 
@@ -131,5 +132,8 @@ public class Control {
             return cantidadTotal;
         }
         return cantidadTotal;
+    }
+    public int getCOntador(){
+        return contadorIngreso;
     }
 }

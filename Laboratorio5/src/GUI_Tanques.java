@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +12,44 @@
  * @author David Soto y Esteban Cabrera
  */
 public class GUI_Tanques extends javax.swing.JFrame {
-
+    //Atributos
+    private Control ctrl; 
     /**
      * Creates new form GUI_Tanques
      */
     public GUI_Tanques() {
         initComponents();
+        ctrl = new Control();
+        Advertencia25.show(false);
+        Advertencia10.show(false);
+    }
+    public void deshabilitar(){
+        Abrir1.setEnabled(false);
+        Abrir2.setEnabled(false);
+        Abrir3.setEnabled(false);
+        Abrir4.setEnabled(false);
+        Abrir5.setEnabled(false);
+        Abrir6.setEnabled(false);
+        Abrir7.setEnabled(false);
+        Abrir8.setEnabled(false);
+        Abrir9.setEnabled(false);
+        Abrir10.setEnabled(false);
+        Utilizar.setEnabled(false);
+        Actualizar.setEnabled(false);
+    }
+    public void habilitar(){
+        Abrir1.setEnabled(true);
+        Abrir2.setEnabled(true);
+        Abrir3.setEnabled(true);
+        Abrir4.setEnabled(true);
+        Abrir5.setEnabled(true);
+        Abrir6.setEnabled(true);
+        Abrir7.setEnabled(true);
+        Abrir8.setEnabled(true);
+        Abrir9.setEnabled(true);
+        Abrir10.setEnabled(true);
+        Utilizar.setEnabled(true);
+        Actualizar.setEnabled(true);
     }
 
     /**
@@ -33,14 +68,10 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Forma = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Largo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Ancho = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        Profundidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        Radio = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -62,8 +93,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Municipio8 = new javax.swing.JTextField();
         Municipio9 = new javax.swing.JTextField();
         Municipio10 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
         IngresarTanque = new javax.swing.JButton();
+        Largo = new javax.swing.JSpinner();
+        Profundidad = new javax.swing.JSpinner();
+        Ancho = new javax.swing.JSpinner();
+        Radio = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         Titulo2 = new javax.swing.JLabel();
         TanquesIngresados = new javax.swing.JComboBox<>();
@@ -106,10 +140,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
         Cerrar8 = new javax.swing.JButton();
         Cerrar9 = new javax.swing.JButton();
         Cerrar10 = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        Advertencia25 = new javax.swing.JLabel();
+        Advertencia10 = new javax.swing.JLabel();
         RellenarTanque = new javax.swing.JButton();
         Actualizar = new javax.swing.JButton();
+        Utilizar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         MostrarTanques = new javax.swing.JButton();
@@ -146,12 +181,6 @@ public class GUI_Tanques extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Ingrese las medidas necesarias (metros):");
 
-        Largo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LargoActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Largo:");
 
         jLabel5.setText("Ancho:");
@@ -183,15 +212,20 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
         jLabel18.setText("Municipio de Valvula 10:");
 
-        jLabel20.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel20.setText("No es posible ingresar mas Tanques a la base de datos del Acueducto");
-
         IngresarTanque.setText("Ingresar Tanque");
         IngresarTanque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IngresarTanqueActionPerformed(evt);
             }
         });
+
+        Largo.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+
+        Profundidad.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+
+        Ancho.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
+
+        Radio.setModel(new javax.swing.SpinnerNumberModel(100, 100, 500, 25));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,36 +236,52 @@ public class GUI_Tanques extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(ID)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(IDTanque, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(119, 119, 119)
-                                .addComponent(Titulo1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addComponent(Titulo1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Profundidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(ID)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(IDTanque, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel2)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(Forma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Largo)
-                                    .addComponent(Profundidad, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                                .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Ancho)
-                                    .addComponent(Radio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(138, 138, 138)
+                                        .addComponent(jLabel7))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Largo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(Ancho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Radio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(47, 47, 47)))))
                 .addGap(38, 38, 38))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -260,17 +310,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
                             .addComponent(Municipio1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Municipio2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
+                        .addGap(144, 144, 144)
                         .addComponent(IngresarTanque)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel20)))
-                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,15 +329,15 @@ public class GUI_Tanques extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Largo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
+                    .addComponent(Largo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Ancho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(Profundidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
+                    .addComponent(Profundidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Radio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
@@ -339,11 +381,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(Municipio10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(jLabel20)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(IngresarTanque)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -446,11 +486,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
         Cerrar10.setText("Cerrar");
 
-        jLabel26.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel26.setText("ADVERTENCIA: Queda menos del 25% de agua del tanque ");
+        Advertencia25.setForeground(new java.awt.Color(255, 0, 0));
+        Advertencia25.setText("ADVERTENCIA: Queda menos del 25% de agua del tanque ");
 
-        jLabel27.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel27.setText("Se cerraron todas las valvulas (10% agua restante) ");
+        Advertencia10.setForeground(new java.awt.Color(255, 0, 0));
+        Advertencia10.setText("Se cerraron todas las valvulas (10% agua restante) ");
 
         RellenarTanque.setText("Rellenar Tanque");
         RellenarTanque.addActionListener(new java.awt.event.ActionListener() {
@@ -466,6 +506,8 @@ public class GUI_Tanques extends javax.swing.JFrame {
             }
         });
 
+        Utilizar.setText("Utilizar");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -475,7 +517,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel26)
+                            .addComponent(Advertencia25)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -555,15 +597,13 @@ public class GUI_Tanques extends javax.swing.JFrame {
                                 .addComponent(MostrarMunicipios, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jLabel27))
+                        .addComponent(Advertencia10))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TanquesIngresados, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Actualizar)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(TanquesIngresados, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(RellenarTanque)
@@ -573,23 +613,32 @@ public class GUI_Tanques extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel22)
-                        .addGap(119, 119, 119))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Utilizar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(Titulo2)
-                        .addGap(121, 121, 121))))
+                        .addGap(18, 18, 18)
+                        .addComponent(Actualizar)
+                        .addGap(24, 24, 24))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Titulo2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TanquesIngresados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(Actualizar))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Titulo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TanquesIngresados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Utilizar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -658,9 +707,9 @@ public class GUI_Tanques extends javax.swing.JFrame {
                         .addComponent(ShowMuni10)
                         .addComponent(Abrir10)))
                 .addGap(27, 27, 27)
-                .addComponent(jLabel26)
+                .addComponent(Advertencia25)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel27)
+                .addComponent(Advertencia10)
                 .addGap(18, 18, 18)
                 .addComponent(RellenarTanque)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -756,7 +805,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(539, 539, 539)
                         .addComponent(jLabel19)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -787,17 +836,21 @@ public class GUI_Tanques extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FormaActionPerformed
 
-    private void LargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LargoActionPerformed
-
     private void IngresarTanqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarTanqueActionPerformed
         // TODO add your handling code here:
+        if ((Municipio1.getText().length()) == 0 || (Municipio2.getText().length()) == 0 || (Municipio3.getText().length()) == 0 || (Municipio4.getText().length()) == 0 || (Municipio5.getText().length()) == 0 || (Municipio6.getText().length()) == 0 || (Municipio7.getText().length()) == 0 || (Municipio8.getText().length()) == 0 || (Municipio9.getText().length()) == 0 || (Municipio10.getText().length()) == 0) {
+            JOptionPane.showMessageDialog(null, "No deje campos vacios", "Error", JOptionPane.ERROR_MESSAGE);}
+        else{
+            if(ctrl.getCOntador()<=9){
+                Tanque ingreso = new Tanque();
+                ingreso = ctrl.crearTanque(IDTanque.getText(),Integer.parseInt(Profundidad.getValue().toString()),Integer.parseInt(Ancho.getValue().toString()) ,Integer.parseInt(Radio.getValue().toString()) ,Integer.parseInt(Largo.getValue().toString()) , Forma.getSelectedItem().toString(), Municipio1.getText(), Municipio2.getText(), Municipio3.getText(), Municipio4.getText(), Municipio5.getText(), Municipio6.getText(), Municipio7.getText(), Municipio8.getText(), Municipio9.getText(), Municipio10.getText());
+                ctrl.ingresarTanque(ingreso);
+                JOptionPane.showMessageDialog(null, "Ingreso realizado con exito", "Ingreso", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya no es posible ingresar Tanques", "Error", JOptionPane.ERROR_MESSAGE);  
+            }
+        }
     }//GEN-LAST:event_IngresarTanqueActionPerformed
-
-    private void TanquesIngresadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanquesIngresadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TanquesIngresadosActionPerformed
 
     private void MostrarMunicipiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarMunicipiosActionPerformed
         // TODO add your handling code here:
@@ -828,6 +881,10 @@ public class GUI_Tanques extends javax.swing.JFrame {
         TanquesIngresados.removeAllItems();
         TanquesIngresados.addItem("SS2110");
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    private void TanquesIngresadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanquesIngresadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TanquesIngresadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -876,8 +933,10 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JButton Abrir8;
     private javax.swing.JButton Abrir9;
     private javax.swing.JButton Actualizar;
+    private javax.swing.JLabel Advertencia10;
+    private javax.swing.JLabel Advertencia25;
     private javax.swing.JButton AguaRegion;
-    private javax.swing.JTextField Ancho;
+    private javax.swing.JSpinner Ancho;
     private javax.swing.JButton CalcularCantidadCilindricas;
     private javax.swing.JButton Cerrar1;
     private javax.swing.JButton Cerrar10;
@@ -893,7 +952,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JLabel ID;
     private javax.swing.JTextField IDTanque;
     private javax.swing.JButton IngresarTanque;
-    private javax.swing.JTextField Largo;
+    private javax.swing.JSpinner Largo;
     private javax.swing.JButton MostrarMunicipios;
     private javax.swing.JButton MostrarTanques;
     private javax.swing.JTextField Municipio1;
@@ -906,8 +965,8 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JTextField Municipio7;
     private javax.swing.JTextField Municipio8;
     private javax.swing.JTextField Municipio9;
-    private javax.swing.JTextField Profundidad;
-    private javax.swing.JTextField Radio;
+    private javax.swing.JSpinner Profundidad;
+    private javax.swing.JSpinner Radio;
     private javax.swing.JButton RellenarTanque;
     private javax.swing.JLabel ShowMuni1;
     private javax.swing.JLabel ShowMuni10;
@@ -922,6 +981,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TanquesIngresados;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel Titulo2;
+    private javax.swing.JButton Utilizar;
     private javax.swing.JSpinner anio;
     private javax.swing.JSpinner dia;
     private javax.swing.JLabel jLabel1;
@@ -936,14 +996,11 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
