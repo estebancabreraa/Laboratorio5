@@ -19,6 +19,9 @@ public class Valvula {
     private int poblacion;
     private ArrayList<Historial> historial;
     
+    public Valvula(){
+        
+    }
     public Valvula(String municipio){
         idMunicipio = municipio;
         historial = new ArrayList<Historial>();

@@ -19,6 +19,30 @@ public class Tanque {
     public Tanque(){
         
     }
-    
-    //
+    //Metodos
+    public int calcularPorcentajeAgua(){
+        int porcentaje = (cantidadRestante/capacidad)*100;
+        return porcentaje;
+    }
+    public int getCapacidad(){
+        return capacidad;
+    }
+    public int getCantidadRestante(){
+       return cantidadRestante; 
+    }
+    public void rellenarTanque(){
+        cantidadRestante = capacidad;
+    }
+    public String getMunicipioDeValvula(int posicion){
+        Valvula prueba = new Valvula();
+        prueba = valvulas[posicion];
+        String municipio = prueba.getIdMunicipio();
+        return municipio;
+    }
+    public void abrirValvula(){
+        
+    }
+    public void cerrarValvula(){
+        
+    }
 }

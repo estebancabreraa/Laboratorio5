@@ -793,6 +793,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
 
     private void TanquesIngresadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanquesIngresadosActionPerformed
         // TODO add your handling code here:
+        TanquesIngresados.getSelectedItem();
     }//GEN-LAST:event_TanquesIngresadosActionPerformed
 
     private void MostrarMunicipiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarMunicipiosActionPerformed
