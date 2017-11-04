@@ -8,14 +8,21 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-import java.util.ArrayList;
 
 public class TCilindrico extends Tanque{
     private int radio;
-    private Valvula[] valvulas = new Valvula[10];
     
-    public TCilindrico(String id, int capacidad, int alto, int cantidadRestante,  int radio, String nMunicipios[]){
-        super(id, capacidad, cantidadRestante, alto);
-        
+    public TCilindrico(String id,  int radio, String[] nMunicipios){
+        super.ide = id;
+        this.radio = radio;
+        for(int i = 0; i < super.valvulas.length; i++){
+            String municipio = nMunicipios[i];
+            super.valvulas[i] = new Valvula(municipio);
+        }
+    }
+    public int calcularCapacidad(){
+        double capacidad = Math.PI*Math.pow(radio, 2);
+        int capacidadInt = Double.valueOf(capacidad).intValue();
+        return capacidadInt;
     }
 }

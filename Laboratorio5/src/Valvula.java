@@ -19,7 +19,8 @@ public class Valvula {
     private int poblacion;
     private ArrayList<Historial> historial;
     
-    public Valvula(){
+    public Valvula(String municipio){
+        idMunicipio = municipio;
         historial = new ArrayList<Historial>();
         Random rn = new Random();
         this.poblacion = 500000 + (int)(rn.nextInt() * 1000000); 
