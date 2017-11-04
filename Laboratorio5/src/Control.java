@@ -68,6 +68,7 @@ public class Control {
     }
     /**
      * Ingresa un tanque nuevo a la lista de tanques
+     * @param nuevo El nuevo Tanque a Ingresar
      */
     public void ingresarTanque(Tanque nuevo){
         tanques[contadorIngreso] = nuevo;
@@ -82,7 +83,9 @@ public class Control {
         tanques[posicion] = nuevo;
     }
     /**
+     * 
      * Regresa un mensaje con una alerta del nivel del agua del tanque
+     * @param porcentaje Porcentaje de agua que queda
      * @return El mensaje de alerta para avisar que el agua de el tanque que se esta utilizando casi se acaba 
      */
     public String Alerta(int porcentaje){
@@ -157,7 +160,7 @@ public class Control {
     }
     /**
      * Calcula el numero de valvulas cilindricas que existen en total en los tanque en la lista
-     * @return 
+     * @return La cantidad de valvulas cilindricas totales
      */
     public int calcularCantidadValvulasCilindricas(){
         int cantidad = 0;
