@@ -55,11 +55,11 @@ public class Control {
             Tanque nuevoCilindrico = new TCilindrico(ide, alto,radio, municipios);
             return nuevoCilindrico;
         }if(tipo.equals("Cubico")){
-            Tanque nuevoCilindrico = new TCilindrico(ide, alto,radio, municipios);
-            return nuevoCilindrico;
+            Tanque nuevoCubico = new TCubico(ide, alto, municipios);
+            return nuevoCubico;
         }if(tipo.equals("Ortogonal")){
-            Tanque nuevoCilindrico = new TCilindrico(ide, alto,radio, municipios);
-            return nuevoCilindrico;
+            Tanque nuevoOrtogonal = new TOrtogonal(ide, alto, ancho, profundidad, municipios);
+            return nuevoOrtogonal;
         }
         return nuevo;
     }
@@ -96,7 +96,7 @@ public class Control {
      */
     public Tanque buscarTanque(String ide){
         Tanque busqueda = new Tanque();
-        for(int i = 0;i<tanques.length; i++){
+        for(int i = 0;i<contadorIngreso; i++){
             Tanque prueba = new Tanque();
             prueba = tanques[i];
             if(ide.equals(prueba.getIDE())){
@@ -105,6 +105,22 @@ public class Control {
             }
         }
         return busqueda;
+    }
+    public int buscarTanque2(String ide){
+        int prueba = 0;
+        if(contadorIngreso == 0){
+           return prueba; 
+        }else{
+            for(int i = 0;i<contadorIngreso; i++){
+                Tanque prueba1 = new Tanque();
+                prueba1 = tanques[i];
+                if(ide.equals(prueba1.getIDE())){
+                    prueba = 1;
+                    return prueba;
+                }
+            }
+            return prueba;
+        }
     }
     /**
      * 

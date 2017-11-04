@@ -33,5 +33,6 @@ public class TOrtogonal extends Tanque{
         int capacidadInt = Double.valueOf(capacidad).intValue();
         super.capacidad = capacidadInt;
         super.cantidadRestante = capacidadInt;
+        System.out.println(capacidadInt);
     }
 }

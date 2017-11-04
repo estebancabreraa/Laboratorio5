@@ -20,6 +20,9 @@ public class Tanque {
         
     }
     //Metodos
+    public void ingresarCapacidad(){
+        
+    }
     public int calcularPorcentajeAgua(){
         int porcentaje = (cantidadRestante/capacidad)*100;
         return porcentaje;
