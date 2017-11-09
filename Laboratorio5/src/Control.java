@@ -17,6 +17,8 @@ public class Control {
     /**
      * Constructor de la clase Control
      */
+    private DataBase dataBase = new DataBase();
+    
     public Control(){
        //Vacio 
     }
@@ -41,36 +43,40 @@ public class Control {
      * @param mun10 Municipio de Valvula 10
      * @return Un tanque nuevo que se creo
      */
-    public Tanque crearTanque(String ide, int profundidad, int ancho, int radio, int alto,String tipo, String mun1,String mun2,String mun3,String mun4,String mun5,String mun6,String mun7,String mun8,String mun9,String mun10){
-        String[] municipios = new String[10];
-        municipios[0] = mun1;
-        municipios[1] = mun2;
-        municipios[2] = mun3;
-        municipios[3] = mun4;
-        municipios[4] = mun5;
-        municipios[5] = mun6;
-        municipios[6] = mun7;
-        municipios[7] = mun8;
-        municipios[8] = mun9;
-        municipios[9] = mun10;
-        Tanque nuevo = new Tanque();
+    public void crearTanque(String tipo, String ide, double profundidad, double ancho, double radio, double alto, String [] muni){
         if(tipo.equals("Cilindrico")){
-            Tanque nuevoCilindrico = new TCilindrico(ide, alto,radio, municipios);
-            return nuevoCilindrico;
+            TCilindrico nuevoCilindrico = new TCilindrico(ide, alto, radio, muni);
+            ingresarTanqueCIL(nuevoCilindrico);
         }if(tipo.equals("Cubico")){
-            Tanque nuevoCubico = new TCubico(ide, alto, municipios);
-            return nuevoCubico;
+            TCubico nuevoCubico = new TCubico(ide, alto, muni);
+            ingresarTanqueCUB(nuevoCubico);
         }if(tipo.equals("Ortogonal")){
-            Tanque nuevoOrtogonal = new TOrtogonal(ide, alto, ancho, profundidad, municipios);
-            return nuevoOrtogonal;
+            TOrtogonal nuevoOrtogonal = new TOrtogonal(ide, alto, ancho, profundidad, muni);
+            ingresarTanqueORT(nuevoOrtogonal);
         }
-        return nuevo;
+        
     }
     /**
      * Ingresa un tanque nuevo a la lista de tanques
      * @param nuevo El nuevo Tanque a Ingresar
      */
-    public void ingresarTanque(Tanque nuevo){
+    public void ingresarTanqueCIL(TCilindrico nuevo){
+        DataBase dataBase = new DataBase();
+        dataBase.registrarTanqueCIL(nuevo);
+        tanques[contadorIngreso] = nuevo;
+        contadorIngreso = contadorIngreso + 1;
+    }
+    
+    public void ingresarTanqueCUB(TCubico nuevo){
+        DataBase dataBase = new DataBase();
+        dataBase.registrarTanqueCUB(nuevo);
+        tanques[contadorIngreso] = nuevo;
+        contadorIngreso = contadorIngreso + 1;
+    }
+    
+    public void ingresarTanqueORT(TOrtogonal nuevo){
+        DataBase dataBase = new DataBase();
+        dataBase.registrarTanqueORT(nuevo);
         tanques[contadorIngreso] = nuevo;
         contadorIngreso = contadorIngreso + 1;
     }
@@ -88,7 +94,7 @@ public class Control {
      * @param porcentaje Porcentaje de agua que queda
      * @return El mensaje de alerta para avisar que el agua de el tanque que se esta utilizando casi se acaba 
      */
-    public String Alerta(int porcentaje){
+    public String Alerta(double porcentaje){
         String alerta = "";
         if(porcentaje<=25 && porcentaje>=10){
             alerta = "ALERTA: Menos de 25% de Agua";
@@ -109,9 +115,9 @@ public class Control {
      * @return Un tanque dentro de la lista de Tanques
      */
     public Tanque buscarTanque(String ide){
-        Tanque busqueda = new Tanque();
+        Tanque busqueda = null;
         for(int i = 0;i<contadorIngreso; i++){
-            Tanque prueba = new Tanque();
+            Tanque prueba = null;
             prueba = tanques[i];
             if(ide.equals(prueba.getIDE())){
                 busqueda = prueba;
@@ -128,7 +134,7 @@ public class Control {
     public int buscarTanque1(String ide){
         int posicion = -1;
         for(int i = 0;i<contadorIngreso; i++){
-            Tanque prueba1 = new Tanque();
+            Tanque prueba1 = null;
             prueba1 = tanques[i];
             if(ide.equals(prueba1.getIDE())){
                 posicion = posicion + 1;
@@ -148,7 +154,7 @@ public class Control {
            return prueba; 
         }else{
             for(int i = 0;i<contadorIngreso; i++){
-                Tanque prueba1 = new Tanque();
+                Tanque prueba1 = null;
                 prueba1 = tanques[i];
                 if(ide.equals(prueba1.getIDE())){
                     prueba = 1;
@@ -165,7 +171,7 @@ public class Control {
     public int calcularCantidadValvulasCilindricas(){
         int cantidad = 0;
         for(int i = 0;i<tanques.length; i++){
-            Tanque prueba = new Tanque();
+            Tanque prueba = null;
             prueba = tanques[i];
             if(prueba instanceof TCilindrico){
                 cantidad = cantidad + 10;
@@ -177,10 +183,10 @@ public class Control {
      * Calcula la cantidad de metros cubicos de agua que restan entre todos los tanques
      * @return Cantidad de metros cubicos restantes
      */
-    public int calcularCantidadAguaTotal(){
-        int cantidadTotal = 0;
+    public double calcularCantidadAguaTotal(){
+        double cantidadTotal = 0;
         for(int i = 0;i<contadorIngreso; i++){
-            Tanque prueba = new Tanque();
+            Tanque prueba = null;
             prueba = tanques[i];
             cantidadTotal = prueba.getCantidadRestante() + cantidadTotal;
         }

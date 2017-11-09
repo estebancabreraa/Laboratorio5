@@ -11,8 +11,9 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+import org.mongodb.morphia.annotations.Embedded;
 
-
+@Embedded
 public class Valvula {
     //Atributos
     private String idMunicipio;
@@ -30,8 +31,8 @@ public class Valvula {
      * @param municipio Municipio que corresponde a la valvula
      */
     public Valvula(String municipio){
-        idMunicipio = municipio;
-        historial = new ArrayList<Historial>();
+        this.idMunicipio = municipio;
+        this.historial = new ArrayList<Historial>();
         this.poblacion = 500 + (int)(Math.random() * 1000); 
     }
     //Metodos

@@ -23,7 +23,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
         initComponents();
         ctrl = new Control();
         posicionamiento = 0;
-        utilizando = new Tanque();
+        //utilizando = new Tanque();
         RellenarTanque.setEnabled(false);
         Utilizar.setEnabled(false);
         MostrarTanques.setEnabled(false);
@@ -64,7 +64,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
         String fecha = dia.getValue().toString()+"/"+mes.getValue().toString()+"/"+anio.getValue().toString();
         utilizando.abrirValvula(posicion,fecha);
         ctrl.reingresarTanque(posicionamiento, utilizando);
-        int porcentaje = utilizando.calcularPorcentajeAgua();
+        double porcentaje = utilizando.calcularPorcentajeAgua();
         String alarma = ctrl.Alerta(porcentaje);
         Advertencia.setText(alarma);
         Advertencia.setEnabled(true);
@@ -945,11 +945,40 @@ public class GUI_Tanques extends javax.swing.JFrame {
             int verificacionIngreso = ctrl.buscarTanque2(IDTanque.getText());
             if(verificacionIngreso == 0){
             if(ctrl.getCOntador()<=9){
+                String tipo = String.valueOf(Forma.getSelectedItem());
+                String id = IDTanque.getText();
+                double profundidad = Double.parseDouble(Profundidad.getValue().toString());
+                double ancho = Double.parseDouble(Ancho.getValue().toString());
+                double radio = Double.parseDouble(Radio.getValue().toString());
+                double largo = Double.parseDouble(Largo.getValue().toString());
+                String[] mun = new String[10];
+                
+                mun[0] = Municipio1.getText();
+
+                mun[1] = Municipio2.getText();
+
+                mun[2] = Municipio3.getText();
+
+                mun[3] = Municipio4.getText();
+
+                mun[4] = Municipio5.getText();
+
+                mun[5] = Municipio6.getText();
+
+                mun[6] = Municipio7.getText();
+
+                mun[7] = Municipio8.getText();
+
+                mun[8] = Municipio9.getText();
+
+                mun[9] = Municipio10.getText();
+ 
                 TanquesIngresados.addItem(IDTanque.getText());
-                Tanque ingreso = new Tanque();
-                ingreso = ctrl.crearTanque(IDTanque.getText(),Integer.parseInt(Profundidad.getValue().toString()),Integer.parseInt(Ancho.getValue().toString()) ,Integer.parseInt(Radio.getValue().toString()) ,Integer.parseInt(Largo.getValue().toString()) , Forma.getSelectedItem().toString(), Municipio1.getText(), Municipio2.getText(), Municipio3.getText(), Municipio4.getText(), Municipio5.getText(), Municipio6.getText(), Municipio7.getText(), Municipio8.getText(), Municipio9.getText(), Municipio10.getText());
-                ingreso.ingresarCapacidad();
-                ctrl.ingresarTanque(ingreso);
+                //Tanque ingreso = new Tanque();
+                ctrl.crearTanque(tipo, id, profundidad, ancho, radio, largo, mun);
+                
+                //ingreso.ingresarCapacidad();
+                //ctrl.ingresarTanque(ingreso);
                 Municipio1.setText("");
                 Municipio2.setText("");
                 Municipio3.setText("");
@@ -1004,7 +1033,7 @@ public class GUI_Tanques extends javax.swing.JFrame {
     private void AguaRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AguaRegionActionPerformed
         // TODO add your handling code here:
         jTextArea1.setText("");
-        int cantidad = ctrl.calcularCantidadAguaTotal();
+        double cantidad = ctrl.calcularCantidadAguaTotal();
         jTextArea1.setText("La cantidad de metros cubicos restantes es: "+cantidad);
     }//GEN-LAST:event_AguaRegionActionPerformed
 

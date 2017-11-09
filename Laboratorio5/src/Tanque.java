@@ -8,24 +8,39 @@
  *
  * @author David Soto y Esteban Cabrera
  */
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
+
+@Entity
 public class Tanque {
     //Atributos
+    @Id private ObjectId id;
+    
     protected String ide;
-    protected int cantidadRestante;
-    protected int capacidad;
-    protected int alto;
+    protected double cantidadRestante;
+    protected double capacidad;
+    protected double alto;
+    
+    @Embedded
     protected Valvula[] valvulas = new Valvula[10];
     //Constructor
     /**
      * Constructor de la clase Tanque
      */
-    public Tanque(){
-        //Vacio
+    public Tanque(){}
+    
+    public Tanque(String ide, double alto){
+        this.ide = ide;
+        this.alto = alto;
+        //this.valvulas = valvulas;
     }
     //Metodos
     /**
      * Ingresa la capacidad de un tanque
      */
+    
     public void ingresarCapacidad(){
         //Vacio
     }
@@ -33,7 +48,7 @@ public class Tanque {
      * Calcula el porcentaje de agua que queda en un tanque
      * @return El porcentaje de agua que queda en el tanque
      */
-    public int calcularPorcentajeAgua(){
+    public double calcularPorcentajeAgua(){
         double porcentajito = ((cantidadRestante*1.0)/capacidad)*100;
         int porcentaje = (int)Math.floor(porcentajito);
         return porcentaje;
@@ -49,19 +64,20 @@ public class Tanque {
      * Regresa la capacidad de un tanque
      * @return La capacidad de un tanque
      */
-    public int getCapacidad(){
+    public double getCapacidad(){
         return capacidad;
     }
     /**
      * Regresa la cantidad Restante de agua
      * @return La cantidad Restante de agua
      */
-    public int getCantidadRestante(){
+    public double getCantidadRestante(){
        return cantidadRestante; 
     }
     /**
      * Rellena un tanque nuevamente
      */
+    
     public void rellenarTanque(){
         cantidadRestante = capacidad;
     }

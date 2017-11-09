@@ -1,3 +1,7 @@
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,10 +12,10 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-
+@Entity
 public class TCilindrico extends Tanque{
     //Atributos
-    private int radio;
+    private double radio;
     //Constructor
     /**
      * Constructor de la clase TCilindrico
@@ -20,9 +24,10 @@ public class TCilindrico extends Tanque{
      * @param radio Radio del tanque
      * @param nMunicipios Arreglo de municipios para las valvulas
      */
-    public TCilindrico(String id, int alto, int radio, String[] nMunicipios){
-        super.ide = id;
-        super.alto = alto;
+    public TCilindrico(){}
+    
+    public TCilindrico(String id, double alto, double radio, String[] nMunicipios){
+        super(id, alto);
         this.radio = radio;
         for(int i = 0; i < super.valvulas.length; i++){
             String municipio = nMunicipios[i];

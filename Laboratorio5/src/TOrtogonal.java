@@ -1,3 +1,8 @@
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,11 +13,11 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-
+@Entity
 public class TOrtogonal extends Tanque{
     //Atributos
-    private int largo;
-    private int profundidad;
+    private double largo;
+    private double profundidad;
     //Constructor
     /**
      * Contructor de TOrtogonal
@@ -22,9 +27,11 @@ public class TOrtogonal extends Tanque{
      * @param profundidad Profundidad del tanque
      * @param nMunicipios Arreglo de municipios para las valvulas
      */
-    public TOrtogonal(String id, int alto, int largo, int profundidad, String[] nMunicipios){
-        super.ide = id;
-        super.alto = alto;
+    
+    public TOrtogonal(){}
+    
+    public TOrtogonal(String id, double alto, double largo, double profundidad, String[] nMunicipios){
+        super(id, alto);
         this.largo = largo;
         this.profundidad = profundidad;
         for(int i = 0; i < super.valvulas.length; i++){

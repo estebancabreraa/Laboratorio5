@@ -1,3 +1,8 @@
+
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +13,7 @@
  *
  * @author David Soto y Esteban Cabrera
  */
-
+@Entity
 public class TCubico extends Tanque{
     //Atributos
         //No hay
@@ -19,9 +24,11 @@ public class TCubico extends Tanque{
      * @param alto Altura del tanque
      * @param nMunicipios Arreglo de municipio para las valvulas
      */
-    public TCubico(String id, int alto, String[] nMunicipios){
-        super.ide = id;
-        super.alto = alto;
+    
+    public TCubico(){}
+    
+    public TCubico(String id, double alto, String[] nMunicipios){
+        super(id, alto);
         for(int i = 0; i < super.valvulas.length; i++){
             String municipio = nMunicipios[i];
             super.valvulas[i] = new Valvula(municipio);
