@@ -26,14 +26,14 @@ public class DataBase {
     }
     
     public void registrarTanqueCIL(TCilindrico tanque){
-       ds.save(tanque);
+       //ds.save(tanque);
     }
     
     public void registrarTanqueCUB(TCubico tanque){
-        ds.save(tanque);
+        //ds.save(tanque);
     }
     
     public void registrarTanqueORT(TOrtogonal tanque){
-        ds.save(tanque);
+        //ds.save(tanque);
     }
 }
