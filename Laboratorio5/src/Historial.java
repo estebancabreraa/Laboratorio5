@@ -1,5 +1,7 @@
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Id;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +18,8 @@ public class Historial {
     //Atributos
     private String fecha;
     private String estado;
+    
+    @Id private ObjectId id;
     //Constructor
     /**
      * Contructor de Historial
