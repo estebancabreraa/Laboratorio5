@@ -21,12 +21,12 @@ public class DataBase {
     public DataBase(){
         MongoClient mongo = new MongoClient();
         Morphia morphia = new Morphia();
-        morphia.map(Tanque.class);//.map(Valvula.class).map(TCilindrico.class).map(TCubico.class).map(TOrtogonal.class); // clases a guardar
+        morphia.map(Tanque.class).map(Valvula.class).map(TCilindrico.class).map(TCubico.class).map(TOrtogonal.class); // clases a guardar
         Datastore ds = morphia.createDatastore(mongo, "Acueducto"); // Base Datos
     }
     
     public void registrarTanqueCIL(TCilindrico tanque){
-        ds.save(tanque);
+       ds.save(tanque);
     }
     
     public void registrarTanqueCUB(TCubico tanque){
